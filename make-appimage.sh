@@ -13,7 +13,7 @@ export DESKTOP=DUMMY
 
 # Deploy dependencies
 quick-sharun /usr/bin/roller
-#cp -r ./AppDir/bin
+cp -r /usr/midi ./AppDir/bin
 
 # Additional changes can be done in between here
 
