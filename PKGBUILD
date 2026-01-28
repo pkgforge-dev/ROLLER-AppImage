@@ -3,9 +3,9 @@
 pkgname=roller-git
 pkgver=0.1.1.r219.g7c23000
 pkgrel=1
-pkgdesc="ClownMDEmu, a Sega Mega Drive/Sega Genesis emulator."
+pkgdesc="Reverse engineering the 1995 game Whiplash/Fatal Racing"
 arch=('x86_64' 'aarch64')
-url="https://clownacy.wordpress.com"
+url="https://github.com/FatalDecomp/ROLLER"
 license=('GPL')
 depends=('sdl3' 'sdl3_image' 'wildmidi')
 makedepends=("git" "cmake" "gcc")
