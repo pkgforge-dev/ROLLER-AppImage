@@ -17,6 +17,8 @@
 
 </div>
 
+### ⚠️ Usage example `./Roller-anylinux-x86_64.AppImage --whiplash-root /rootpath/where/fataldata/is/located` ⚠️
+
 ---
 
 AppImage made using [sharun](https://github.com/VHSgunzo/sharun) and its wrapper [quick-sharun](https://github.com/pkgforge-dev/Anylinux-AppImages/blob/main/useful-tools/quick-sharun.sh), which makes it extremely easy to turn any binary into a portable package reliably without using containers or similar tricks. 
