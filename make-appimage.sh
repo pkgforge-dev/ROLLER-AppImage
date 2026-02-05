@@ -11,7 +11,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=/usr/share/pixmaps/roller.ico
 
 # Deploy dependencies
-quick-sharun /usr/bin/roller
+quick-sharun /usr/bin/roller /usr/lib/libWildMidi.so
 cp -r /usr/midi ./AppDir/bin
 echo 'SHARUN_WORKING_DIR=${SHARUN_DIR}/bin' >> ./AppDir/.env
 
