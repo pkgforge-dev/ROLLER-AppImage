@@ -37,4 +37,4 @@ make -j$(nproc)
 
 mv -v roller /usr/bin
 cp -v ../images/roller.ico /usr/share/pixmaps/roller.ico
-cp -rv midi /usr
+cp -rv ../midi /usr
