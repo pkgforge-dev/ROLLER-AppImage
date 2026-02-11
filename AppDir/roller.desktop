@@ -2,7 +2,7 @@
 Type=Application
 Name=Roller
 Comment=Reverse engineering the 1995 game Whiplash/Fatal Racing
-Exec=roller --whiplash-root .local/share/roller
+Exec=roller
 Icon=roller
 Terminal=false
 Categories=Game;Racing;Simulator
