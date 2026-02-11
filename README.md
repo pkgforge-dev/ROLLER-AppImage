@@ -17,7 +17,7 @@
 
 </div>
 
-### ⚠️ Usage example `./Roller-x-anylinux-x.AppImage --whiplash-root /rootpath/where/fataldata/is/located --midi-root /root/for/midi/folder` ⚠️
+### ⚠️ Usage example `./Roller-x-anylinux-x.AppImage --whiplash-root /rootpath/where/fataldata/is/located` ⚠️
 
 ---
 
