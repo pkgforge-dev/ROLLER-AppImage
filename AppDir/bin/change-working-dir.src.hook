@@ -1,0 +1,6 @@
+dir=${XDG_DATA_HOME:-~/.local/share}/roller
+if [ ! -f "dir"/midi/wildmidi.cfg ]; then
+  mkdir -p "$dir"
+  cp -r "$APPDIR"/bin/midi "$dir"
+fi
+cd "$dir"
