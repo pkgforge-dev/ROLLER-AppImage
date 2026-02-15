@@ -17,7 +17,7 @@
 
 </div>
 
-### ⚠️ Usage example `./Roller-x-anylinux-x.AppImage --whiplash-root /rootpath/where/fataldata/is/located` ⚠️
+### ⚠️ Put `fataldata` inside `~./local/share/roller` and run `./Roller-x-anylinux-x.AppImage --whiplash-root ~./local/share/roller` ⚠️
 
 ---
 
