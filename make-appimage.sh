@@ -10,8 +10,8 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export DEPLOY_OPENGL=1
 
 # Deploy dependencies
-quick-sharun /usr/bin/roller /usr/lib/libWildMidi.so
-cp -r /usr/midi ./AppDir/bin
+quick-sharun ./AppDir/bin/roller /usr/lib/libWildMidi.so
+#cp -r /usr/midi ./AppDir/bin
 echo 'SHARUN_WORKING_DIR=${SHARUN_DIR}/bin' >> ./AppDir/.env
 
 # Additional changes can be done in between here
