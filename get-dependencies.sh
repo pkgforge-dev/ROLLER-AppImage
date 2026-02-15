@@ -30,9 +30,7 @@ echo "$VERSION" > ~/version
 
 cd ./ROLLER
 mkdir -p build && cd build
-cmake .. \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX="/usr"
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make -j$(nproc)
 
 mv -v roller /usr/bin
