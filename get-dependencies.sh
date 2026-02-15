@@ -28,10 +28,10 @@ VERSION="$(git ls-remote "$REPO" HEAD | cut -c 1-9 | head -1)"
 git clone "$REPO" ./ROLLER
 echo "$VERSION" > ~/version
 
+mkdir -p ./AppDir/bin
 cd ./ROLLER
 mkdir -p build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 make -j$(nproc)
-
-mv -v roller /usr/bin
-cp -rv ../midi /usr
+mv -v roller ../AppDir/bin
+cp -rv ../midi ../AppDir/bin
