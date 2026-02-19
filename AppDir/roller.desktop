@@ -5,4 +5,5 @@ Comment=Reverse engineering the 1995 game Whiplash/Fatal Racing
 Exec=roller
 Icon=roller
 Terminal=false
+StartupWMClass=roller
 Categories=Game;Racing;Simulator
