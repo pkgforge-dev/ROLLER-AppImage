@@ -17,7 +17,7 @@
 
 </div>
 
-### ⚠️ Put `fataldata` inside `~./local/share/roller` and run `./Roller-x-anylinux-x.AppImage --whiplash-root ~./local/share/roller` ⚠️
+### ⚠️ Put `fataldata` inside `~./local/share/roller` and run `./Roller-x-anylinux-x.AppImage --whiplash-root ~/.local/share/roller` ⚠️
 
 ---
 
