@@ -1,0 +1,12 @@
+#!/bin/sh
+dir=$DATADIR/roller
+mkdir -p "$dir"
+if [ ! -f "$dir"/midi/wildmidi.cfg ]; then
+  cp -r "$APPDIR"/bin/midi "$dir"
+fi
+cd "$dir"
+
+case " $* " in
+  *" --whiplash-root "*) ;;
+  *) set -- --whiplash-root "$dir" "$@" ;;
+esac
