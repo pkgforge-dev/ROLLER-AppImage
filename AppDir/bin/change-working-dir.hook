@@ -1,5 +1,5 @@
-#!/bin/false
-dir=${XDG_DATA_HOME:-~/.local/share}/roller
+#!/bin/sh
+dir=$DATADIR/roller
 mkdir -p "$dir"
 if [ ! -f "$dir"/midi/wildmidi.cfg ]; then
   cp -r "$APPDIR"/bin/midi "$dir"
