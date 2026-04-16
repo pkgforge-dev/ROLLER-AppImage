@@ -1,0 +1,73 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d2abdc8..31f03b0 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -187,6 +187,58 @@ if(ROLLER_BUILD_GAME)
+         find_package(libcdio REQUIRED)
+     endif()
+ 
++    # libADLMIDI: OPL3 FM synthesis backend. The vendored copy under
++    # external/libadlmidi only ships a Zig build script, so build it here as
++    # well to keep the CMake build self-contained (no zig/clang needed).
++    set(ROLLER_LIBADLMIDI_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/libadlmidi")
++    if(NOT EXISTS "${ROLLER_LIBADLMIDI_DIR}/include/adlmidi.h")
++        message(FATAL_ERROR
++            "ROLLER: vendored libADLMIDI not found at ${ROLLER_LIBADLMIDI_DIR}. "
++            "rollersound.c includes adlmidi.h, so external/libadlmidi must be "
++            "present to build the game.")
++    endif()
++
++    enable_language(CXX)
++
++    add_library(roller-adlmidi STATIC
++        external/libadlmidi/src/adlmidi.cpp
++        external/libadlmidi/src/adlmidi_load.cpp
++        external/libadlmidi/src/adlmidi_midiplay.cpp
++        external/libadlmidi/src/adlmidi_opl3.cpp
++        external/libadlmidi/src/adlmidi_private.cpp
++        external/libadlmidi/src/adlmidi_sequencer.cpp
++        external/libadlmidi/src/inst_db.cpp
++        external/libadlmidi/src/chips/dosbox_opl3.cpp
++        external/libadlmidi/src/chips/dosbox/dbopl.cpp
++        external/libadlmidi/src/wopl/wopl_file.c
++        external/libadlmidi/src/models/model_ail.c
++        external/libadlmidi/src/models/model_apogee.c
++        external/libadlmidi/src/models/model_dmx.c
++        external/libadlmidi/src/models/model_generic.c
++        external/libadlmidi/src/models/model_hmi_sos.c
++        external/libadlmidi/src/models/model_msadlib.c
++        external/libadlmidi/src/models/model_oconnell.c
++        external/libadlmidi/src/models/model_win9x.c)
++
++    target_include_directories(roller-adlmidi
++        PUBLIC "${ROLLER_LIBADLMIDI_DIR}/include"
++        PRIVATE "${ROLLER_LIBADLMIDI_DIR}/src")
++
++    # DosBox OPL3 emulator only — keep these in sync with
++    # external/libadlmidi/build.zig
++    target_compile_definitions(roller-adlmidi PRIVATE
++        DOSBOX_NO_MUTEX
++        ADLMIDI_DISABLE_NUKED_EMULATOR
++        ADLMIDI_DISABLE_OPAL_EMULATOR
++        ADLMIDI_DISABLE_JAVA_EMULATOR
++        ADLMIDI_DISABLE_ESFMU_EMULATOR
++        ADLMIDI_DISABLE_MAME_OPL2_EMULATOR
++        ADLMIDI_DISABLE_YMFM_EMULATOR)
++
++    set_target_properties(roller-adlmidi PROPERTIES
++        LINKER_LANGUAGE CXX
++        POSITION_INDEPENDENT_CODE ON)
++
+     set(ROLLER_GAME_SOURCES ${ROLLER_GAME_BASE_SOURCES})
+     if(EMSCRIPTEN)
+         list(APPEND ROLLER_GAME_SOURCES ${ROLLER_GAME_WEB_SOURCES})
+@@ -213,7 +265,8 @@ if(ROLLER_BUILD_GAME)
+         SDL3::SDL3
+         SDL3_image::SDL3_image
+         WildMidi::libwildmidi
+-        libcdio::cdio)
++        libcdio::cdio
++        roller-adlmidi)
+     if(ROLLER_MATH_LIBRARY)
+         target_link_libraries(roller PRIVATE "${ROLLER_MATH_LIBRARY}")
+     endif()
