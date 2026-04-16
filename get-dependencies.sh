@@ -7,31 +7,28 @@ ARCH=$(uname -m)
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
 pacman -Syu --noconfirm \
-    cmake      \
-    libdecor   \
-    sdl3       \
-    sdl3_image \
+    cmake          \
+    libcdio        \
+    sdl3_image     \
+    shaderc        \
+    vulkan-headers \
     wildmidi
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
-get-debloated-pkgs --add-common --prefer-nano
+get-debloated-pkgs --add-common --prefer-nano libdecor-mini
 
-# Comment this out if you need an AUR package
-#make-aur-package
+make-aur-package adlmidi
 
-# If the application needs to be manually built that has to be done down here
-echo "Making nightly build of ROLLER..."
+echo "Building ROLLER..."
 echo "---------------------------------------------------------------"
 REPO="https://github.com/FatalDecomp/ROLLER"
 VERSION="$(git ls-remote "$REPO" HEAD | cut -c 1-9 | head -1)"
-git clone "$REPO" ./ROLLER
+git clone --depth 1 "$REPO" ./ROLLER
 echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
-cd ./ROLLER
-mkdir -p build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j$(nproc)
-mv -v roller ../../AppDir/bin
-cp -rv ../midi ../../AppDir/bin
+cmake -S ./ROLLER -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j$(nproc)
+mv -v build/roller ./AppDir/bin
+cp -rv ./ROLLER/midi ./AppDir/bin
