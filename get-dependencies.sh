@@ -24,7 +24,7 @@ echo "Building ROLLER..."
 echo "---------------------------------------------------------------"
 REPO="https://github.com/FatalDecomp/ROLLER"
 VERSION="$(git ls-remote "$REPO" HEAD | cut -c 1-9 | head -1)"
-git clone "$REPO" ./ROLLER
+git clone --depth 1 "$REPO" ./ROLLER
 echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
